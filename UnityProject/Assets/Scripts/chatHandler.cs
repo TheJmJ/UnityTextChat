@@ -7,7 +7,7 @@ public class chatHandler : MonoBehaviour
     [SerializeField] Text text;
     [SerializeField] InputField textField;
 
-    string lastLine;
+    //string lastLine;
 
     private void Awake()
     {
@@ -23,11 +23,17 @@ public class chatHandler : MonoBehaviour
         }
 
         text.text = "";
-        foreach (string s in client.chatText)
+
+        for(int i = client.chatText.Length; i > 0;)
         {
-            text.text += "\n" + s;
+            text.text += "\n" + client.chatText[--i];
         }
-        lastLine = client.chatText[0];
+
+        //foreach (string s in client.chatText)
+        //{
+        //    text.text += "\n" + s;
+        //}
+        //lastLine = client.chatText[0];
     }
 
     public void SendInputMessage()

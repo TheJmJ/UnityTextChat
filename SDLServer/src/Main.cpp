@@ -57,7 +57,6 @@ int main()
 	printf("Server seemed to start properly.\nRunning!");
 	while (running)
 	{
-		bool idling = true;
 		printf("\n===========================\nUPDATELOOP\n===========================\n");
 		SDLNet_CheckSockets(socketSet, 0);
 		/* Process Every connected client*/
@@ -94,7 +93,6 @@ int main()
 			}
 			else
 			{
-				idling = false;
 				if (SDLNet_SocketReady(clients[i].socket))
 				{
 					/* read the buffer from client */

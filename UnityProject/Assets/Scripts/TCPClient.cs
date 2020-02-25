@@ -11,11 +11,11 @@ public class TCPClient : MonoBehaviour
 {
     private TcpClient socketConnection;
     private Thread clientReceiveThread;
-    public string[] chatText = new string[10];
+    public string[] chatText = new string[15];
 
     void AddToChat(string s)
     {
-        for(int i = (10 - 1); i > 0;)
+        for(int i = (chatText.Length - 1); i > 0;)
         {
             chatText[i] = chatText[--i];
         }
@@ -93,5 +93,9 @@ public class TCPClient : MonoBehaviour
         {
             Debug.Log("Socket exception: " + socketException);
         }
+    }
+    private void OnDestroy()
+    {
+        clientReceiveThread.Abort();
     }
 }
