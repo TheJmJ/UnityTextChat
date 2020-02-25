@@ -1,3 +1,0 @@
-C:/Users/JereTuo/Documents/Projects/NetworkUnityProject/SDLServer/CMakeFiles/MyGame.dir
-C:/Users/JereTuo/Documents/Projects/NetworkUnityProject/SDLServer/CMakeFiles/ALL_BUILD.dir
-C:/Users/JereTuo/Documents/Projects/NetworkUnityProject/SDLServer/CMakeFiles/ZERO_CHECK.dir
