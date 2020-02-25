@@ -11,6 +11,7 @@
 
 struct Client
 {
+	std::string name = "DERP";
 	Uint32 ipAddr = 0;
 	TCPsocket socket = 0;
 	IPaddress* remoteIP = 0;
@@ -90,9 +91,12 @@ int main()
 				printf("Accepted a connection from %d.%d.%d.%d port %hu\n", clients[i].ipAddr >> 24,
 					(clients[i].ipAddr >> 16) & 0xff, (clients[i].ipAddr >> 8) & 0xff, clients[i].ipAddr & 0xff,
 					clients[i].remoteIP->port);
+
+				clients[i].name = "USER#" + std::to_string(i);
+
 				for (int x = 0; x < MAXUSERS; x++)
 				{
-					std::string newMessage = "System> User #" + std::to_string(i) + " has connected to the chat";
+					std::string newMessage = "System> " + clients[i].name + " has connected to the chat";
 					if (clients[x].socket != 0)
 					{
 						SDLNet_TCP_Send(clients[x].socket, newMessage.c_str(), newMessage.length());
@@ -110,7 +114,7 @@ int main()
 						printf("Error or host closed connection\n");
 						for (int x = 0; x < MAXUSERS; x++)
 						{
-							std::string newMessage = "System> User #" + std::to_string(i) + " has left the chat";
+							std::string newMessage = "System> " + clients[i].name + " has left the chat";
 							if (clients[x].socket != 0)
 							{
 								SDLNet_TCP_Send(clients[x].socket, newMessage.c_str(), newMessage.length());
@@ -122,18 +126,16 @@ int main()
 						break;
 					}
 					/* Read Send message forward */
-					printf("Received: %.*s\n", len, message);
-					if (message[0] == 'q') {
-						printf("Disconecting on a q\n");
-						break;
-					}
-					if (message[0] == 'Q') {
-						printf("Closing server on a Q.\n");
-						running = false;
-						break;
-					}
+					//printf("Received: %.*s\n", len, message);
+					//if (message[0] == '/') 
+					//{
+					//	if (message[1] == 'n')
+					//	{
+					//		strcpy()
+					//	}
+					//}
 
-					std::string newMessage = "User #" + std::to_string(i) + ": ";
+					std::string newMessage = clients[i].name + ": ";
 					for (int x = 0; x < len; x++)
 					{
 						newMessage += message[x];
