@@ -25,17 +25,19 @@ public class chatHandler : MonoBehaviour
             SendInputMessage();
             textField.ActivateInputField();
         }
-        else if(Input.GetKeyDown(KeyCode.Return) && !hasAttemptedConnecting)
+        else if (Input.GetKeyDown(KeyCode.Return) && !hasAttemptedConnecting)
         {
             client.ConnectToServer(textField.text);
+            textField.text = "";
             client.chatText[0] = "Connecting to '" + textField.text + "'...";
             client.chatText[1] = "";
             hasAttemptedConnecting = true;
+            textField.ActivateInputField();
         }
 
         text.text = "";
 
-        for(int i = client.chatText.Length; i > 0;)
+        for (int i = client.chatText.Length; i > 0;)
         {
             text.text += "\n" + client.chatText[--i];
         }
