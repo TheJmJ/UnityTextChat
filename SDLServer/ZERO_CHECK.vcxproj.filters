@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\JereTuo\Documents\Projects\NetworkUnityProject\SDLServer\CMakeFiles\379440fded5a83b3ccaa1f1363664559\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{47676D2A-BB78-3AB2-A6C5-3349C7D230C3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
