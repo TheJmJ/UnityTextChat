@@ -12,6 +12,7 @@ public class TCPClient : MonoBehaviour
     private TcpClient socketConnection;
     private Thread clientReceiveThread;
     public string[] chatText = new string[15];
+    private string addressToConnectTo;
 
     void AddToChat(string s)
     {
@@ -22,8 +23,9 @@ public class TCPClient : MonoBehaviour
         chatText[0] = s;
     }
 
-    private void Start()
+    public void ConnectToServer(string ipAddress)
     {
+        addressToConnectTo = ipAddress;
         ConnectToTCPServer();
     }
 
@@ -44,7 +46,7 @@ public class TCPClient : MonoBehaviour
 
     private void ListenForData()
     {
-        socketConnection = new TcpClient("localhost", 2310);
+        socketConnection = new TcpClient(addressToConnectTo, 2310);
         Byte[] bytes = new byte[1024];
         chatText[0] = "Connected!";
         while (true)

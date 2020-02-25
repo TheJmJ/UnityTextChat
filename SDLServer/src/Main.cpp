@@ -90,6 +90,14 @@ int main()
 				printf("Accepted a connection from %d.%d.%d.%d port %hu\n", clients[i].ipAddr >> 24,
 					(clients[i].ipAddr >> 16) & 0xff, (clients[i].ipAddr >> 8) & 0xff, clients[i].ipAddr & 0xff,
 					clients[i].remoteIP->port);
+				for (int x = 0; x < MAXUSERS; x++)
+				{
+					std::string newMessage = "System> User #" + std::to_string(i) + " has connected to the chat";
+					if (clients[x].socket != 0)
+					{
+						SDLNet_TCP_Send(clients[x].socket, newMessage.c_str(), newMessage.length());
+					}
+				}
 			}
 			else
 			{
@@ -100,6 +108,14 @@ int main()
 					int len = SDLNet_TCP_Recv(clients[i].socket, message, 1024);
 					if (!len) {
 						printf("Error or host closed connection\n");
+						for (int x = 0; x < MAXUSERS; x++)
+						{
+							std::string newMessage = "System> User #" + std::to_string(i) + " has left the chat";
+							if (clients[x].socket != 0)
+							{
+								SDLNet_TCP_Send(clients[x].socket, newMessage.c_str(), newMessage.length());
+							}
+						}
 						clients[i].socket = 0;
 						clients[i].ipAddr = 0;
 						clients[i].remoteIP = 0;
