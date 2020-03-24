@@ -71,7 +71,7 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=/INCREMENTAL:NO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=/debug /INCREMENTAL
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/ChatServer
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/Server
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.16.27023/bin/Hostx86/x86/link.exe
@@ -106,7 +106,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=ChatServer
+CMAKE_PROJECT_NAME:STATIC=Server
 
 //RC compiler
 CMAKE_RC_COMPILER:FILEPATH=rc
@@ -179,14 +179,14 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Value Computed by CMake
-ChatServer_BINARY_DIR:STATIC=D:/Game Projects/chatunityprogram/SDLServer
-
-//Value Computed by CMake
-ChatServer_SOURCE_DIR:STATIC=D:/Game Projects/chatunityprogram/SDLServer
-
 //Path to a library.
 "D:/Game Projects/chatunityprogram/SDLServer/SDL2/SDL2/lib/x86/SDL2.lib":FILEPATH=D:/Game Projects/chatunityprogram/SDLServer/SDL2/SDL2/lib/x86/SDL2.lib-NOTFOUND
+
+//Give your game name format GameName_Client
+ProjectConf_GameClientName:FILEPATH=Client
+
+//Give your server name format ServerName_Server
+ProjectConf_GameServertName:FILEPATH=Server
 
 //Path to a library.
 SDL2MAIN_LIBRARY:FILEPATH=D:/Game Projects/chatunityprogram/SDLServer/SDL2/SDL2/lib/x86/SDL2main.lib
@@ -202,6 +202,12 @@ SDL2_NET_INCLUDE_DIR:PATH=D:/Game Projects/chatunityprogram/SDLServer/SDL2/SDL2_
 
 //Path to a library.
 SDL2_NET_LIBRARY:FILEPATH=D:/Game Projects/chatunityprogram/SDLServer/SDL2/SDL2_net/lib/x86/SDL2_net.lib
+
+//Value Computed by CMake
+Server_BINARY_DIR:STATIC=D:/Game Projects/chatunityprogram/SDLServer
+
+//Value Computed by CMake
+Server_SOURCE_DIR:STATIC=D:/Game Projects/chatunityprogram/SDLServer
 
 
 ########################

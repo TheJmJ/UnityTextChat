@@ -1,58 +1,44 @@
-# COPYRIGHT: JONI MUSTAKANGAS
+#USER DEFINED VARIABLES
+#set(CLIENTNAME Client) #Defina your ClientName
+#set(SERVERNAME Server) #Define your ServerName
+set(ProjectConf_GameClientName "Client" CACHE FILEPATH "Give your game name format GameName_Client")
+set(ProjectConf_GameServertName "Server" CACHE FILEPATH "Give your server name format ServerName_Server")
+set(CLIENTNAME ${ProjectConf_GameClientName}) #Defina your ClientName
+set(SERVERNAME ${ProjectConf_GameServertName}) #Define your ServerName
 
-cmake_minimum_required(VERSION 3.7)
+# Set CMake minimum version and CMake policy required by UrhoCommon module
+cmake_minimum_required (VERSION 3.2.3)
+if (COMMAND cmake_policy)
+    # Libraries linked via full path no longer produce linker search paths
+    cmake_policy (SET CMP0003 NEW)
+    # INTERFACE_LINK_LIBRARIES defines the link interface
+    cmake_policy (SET CMP0022 NEW)
+    # Disallow use of the LOCATION target property - so we set to OLD as we still need it
+    cmake_policy (SET CMP0026 OLD)
+    # MACOSX_RPATH is enabled by default
+    cmake_policy (SET CMP0042 NEW)
+    # Honor the visibility properties for SHARED target types only
+    cmake_policy (SET CMP0063 OLD)
+endif ()
+# Set project name
+#project (${CLIENTNAME})
 # Set CMake modules search path
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
-# Set CMake SDL PATHS
+#set (CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/)
+#include(${CMAKE_SOURCE_DIR}/CMake/ProjectCommon.cmake)
 
-set(PROJECTNAME ChatServer)
-
-project(${PROJECTNAME})
+# Set project name
+project (${SERVERNAME})
 # Set CMake modules search path
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
-# Set CMake SDL PATHS
-set(SDL2_DIR ${CMAKE_SOURCE_DIR}/SDL2/SDL2/)
-set(SDL2_net_DIR ${CMAKE_SOURCE_DIR}/SDL2/SDL2_net/)
-message(${SDL2_DIR})
-message(${SDL2_net_DIR})
-find_package(SDL2 REQUIRED)
-find_package(SDL2_net REQUIRED)
-#include_directories(${SDL2_INCLUDE_DIRS})
-include_directories(
-${SDL2_INCLUDE_DIRS} 
-${SDL2_NET_INCLUDE_DIR} )
-
-add_executable(${PROJECTNAME} src/Main.cpp)
-LINK_DIRECTORIES(${SDL2_LIBRARIES} ${SDL2_NET_LIBRARY})
-find_library(${SDL2_LIBRARIES} ${SDL2_NET_LIBRARY})
-
-target_link_libraries(${PROJECTNAME} 
-${SDL2_LIBRARIES} 
-${SDL2_NET_LIBRARY}	
-)
-file (GLOB CPP_FILES src/*.cpp)
-file (GLOB H_FILES src/*.h)
-set (SOURCE_FILES ${CPP_FILES} ${H_FILES})
-
-#Post Build SCRIPT
-#define build path
-#SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
-#    ${PROJECT_SOURCE_DIR}/lib CACHE
-#    PATH "Directory where all the .lib files are dumped." FORCE)
-#SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY
-#    ${PROJECT_SOURCE_DIR}/bin CACHE
-#    PATH "Directory where .exe and .dll files are dumped." FORCE)
-file (GLOB SDL2_DLL_FILES ${SDL2_DIR}/lib/x86/*.dll)
-file (GLOB SDL2_net_DLL_FILES ${SDL2_net_DIR}/lib/x86/*.dll)
-
-add_custom_command(
-        TARGET ${PROJECTNAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-                ${SDL2_DLL_FILES}
-                ${CMAKE_CURRENT_BINARY_DIR}/Debug/)
-add_custom_command(
-        TARGET ${PROJECTNAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-                ${SDL2_net_DLL_FILES}
-                ${CMAKE_CURRENT_BINARY_DIR}/Debug/)
-  
+set (CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/)
+include(${CMAKE_SOURCE_DIR}/CMake/ProjectCommon.cmake)
+# Include UrhoCommon.cmake module after setting project name
+#include (UrhoCommon)
+# Define target name
+set (TARGET_NAME ${SERVERNAME})
+# Define source files
+#define_source_files ()
+#file (GLOB CPP_FILES src/Server/*.cpp)
+#file (GLOB H_FILES src/Server*.h)
+#set (SOURCE_FILES ${CPP_FILES} ${H_FILES})
+#add_executable(${SERVERNAME} ${SOURCE_FILES})
+setup_server_exe()
