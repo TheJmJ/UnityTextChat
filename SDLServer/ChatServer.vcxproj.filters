@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\JereTuo\Documents\Projects\chatunityprogram\SDLServer\src\Main.cpp">
+    <ClCompile Include="D:\Game Projects\chatunityprogram\SDLServer\src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\JereTuo\Documents\Projects\chatunityprogram\SDLServer\CMakeLists.txt" />
+    <CustomBuild Include="D:\Game Projects\chatunityprogram\SDLServer\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{E7DA0A77-A6BD-3F60-B02D-A0CC831B4F88}</UniqueIdentifier>
+      <UniqueIdentifier>{B07A9FA7-D3E6-3BDF-A12E-DF9643452F92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

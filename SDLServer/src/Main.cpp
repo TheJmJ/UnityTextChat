@@ -17,6 +17,27 @@ struct Client
 	IPaddress* remoteIP = 0;
 };
 
+std::string GetNameFrom(char* a, int size, int position)
+{
+		int i;
+		std::string s = "";
+		for (i = position; i < size; i++) {
+			s = s + a[i];
+		}
+		return s;
+}
+
+bool starts_with(const char *string, const char *prefix)
+{
+	while (*prefix)
+	{
+		if (*prefix++ != *string++)
+			return 0;
+	}
+
+	return 1;
+}
+
 int main()
 {
 	// Server Initializations
@@ -112,6 +133,8 @@ int main()
 					int len = SDLNet_TCP_Recv(clients[i].socket, message, 1024);
 					if (!len) {
 						printf("Error or host closed connection\n");
+
+						// Send message of disconnection to all
 						for (int x = 0; x < MAXUSERS; x++)
 						{
 							std::string newMessage = "System> " + clients[i].name + " has left the chat";
@@ -134,13 +157,28 @@ int main()
 					//		strcpy()
 					//	}
 					//}
+					std::string newMessage = clients[i].name + ": "; // Message we return
 
-					std::string newMessage = clients[i].name + ": ";
+					// Detect command
+					if (message[0] == '/')
+					{
+						if (starts_with(message, "/nick "))
+						{
+							clients[i].name = GetNameFrom(message, len, 6);
+						}
+
+						newMessage = "Changed userName to = " + clients[i].name;
+
+						SDLNet_TCP_Send(clients[i].socket, newMessage.c_str(), newMessage.length());
+						continue;
+					}
+
 					for (int x = 0; x < len; x++)
 					{
 						newMessage += message[x];
 					}
 
+					// Send message to everyone
 					for (int x = 0; x < MAXUSERS; x++)
 					{
 						if (clients[x].socket != 0)
