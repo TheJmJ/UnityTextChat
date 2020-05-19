@@ -1,5 +1,5 @@
 **_READ ME FIRST_**
 
-If you want to just check the build, go to the **Build** Branch
+This is a simple Chat utilizing Unity as the client and SDLNet on the server
 
-This branch is just for the source code
+We also have fancy features such as /nick for nickname changes and... that's about it!
